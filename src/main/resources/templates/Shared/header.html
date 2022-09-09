@@ -1,0 +1,74 @@
+<header layout:fragment="header"
+        xmlns:layout="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+    <!-- Static navbar -->
+    <nav class="navbar navbar-light" style="background-color: #d0e4f3;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand active" href="/user/home"><span class="glyphicon glyphicon-education"></span> Home</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav" sec:authorize="hasAuthority('SUPERADMIN')">
+                    <li><a href="/user/list"><span class="glyphicon glyphicon-th-list"></span> Users</a></li>
+                </ul>
+                <ul class="nav navbar-nav" sec:authorize="hasAnyAuthority('EMPLOYEE', 'STUDENT', 'DEAN')">
+                    <li class="dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           <span class="glyphicon glyphicon-list-alt"></span> Services <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a href="/services/list/StudentTranscriptIssuance">Student transcript issuance</a></li>
+                            <li><a href="/services/list/StudentStatusStatement">Student status statement</a></li>
+                            <li><a href="/services/list/RequestToObjectToMaterial">Request to object to material</a></li>
+                            <li><a href="/services/list/IssuanceOfRegistrationDocumentForDeferment">Issuance of registration document for deferment</a></li>
+                            <li><a href="/services/list/RequestToCancelRegistration">Request to cancel registration</a></li>
+                            <li><a href="/services/list/GraduationCertificate">Graduation Certificate</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav" sec:authorize="hasAnyAuthority('EMPLOYEE', 'STUDENT', 'DEAN')">
+                    <li class="dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           <span class="glyphicon glyphicon-flag"></span> Announcements <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                            <li><a class="dropdown-item" href="/announcement/list/generalAnnouncement">General Announcements</a></li>
+                            <li><a class="dropdown-item" href="/announcement/list/marks">Marks</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown" sec:authorize="isAuthenticated()" th:if="${notifications} != null">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span th:text="${#lists.size(notifications)}" class="badge ml-2" style="background-color: red"></span> <span class="glyphicon glyphicon-bell"></span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                            <li th:each="notification : ${notifications}">
+                                <a class="dropdown-item" th:href="@{*{notification.url}}" th:text="${notification.decription}"></a>
+                            </li>
+                        </ul>
+                    </li>
+<!--                    <td th:text="${#lists.size(u.engines)}">[Engine Size]</td>-->
+                    <li sec:authorize="isAuthenticated()">
+<!--                        <a th:href="@{/user/details/-1}" th:text="${#authentication.name}"></a>-->
+                        <a th:href="@{/user/details/-1}"><span class="glyphicon glyphicon-user"></span> Profile</a>
+                    </li>
+                    <li sec:authorize="isAuthenticated()">
+                        <a href="/auth/logout" id="logout"><span class="glyphicon glyphicon-off"></span> Logout</a>
+                    </li>
+                    <li sec:authorize="!isAuthenticated()">
+                        <a href="/auth/loginPage"><span class="glyphicon glyphicon-repeat"></span> Login</a>
+                    </li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+    </nav>
+</header>

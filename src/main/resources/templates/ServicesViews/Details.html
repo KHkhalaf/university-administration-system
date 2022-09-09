@@ -1,0 +1,184 @@
+<!DOCTYPE HTML>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
+<head>
+    <title>Details Service</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+<div th:replace="Shared/header :: header"></div>
+
+<div layout:fragment="content" align="center">
+    <h1>Service Details</h1>
+    <br />
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <form action="#" th:object="${updatedServiceDto}">
+                <div class="row" th:if="*{serviceType} == 'RequestToObjectToMaterial'">
+                    <div class="col-md-4">
+                        <label class="control-label">Material Name :</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label class="form-control" th:text="*{materialName}"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" th:if="*{serviceType} != 'RequestToObjectToMaterial'">
+                    <div class="col-md-4">
+                        <label class="control-label"> Identification:</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <img class="img" th:src="@{'/upload/' + *{identificationImg}}" alt="identification image" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row" th:if="*{serviceType} == 'RequestToCancelRegistration' or *{serviceType} == 'StudentStatusStatement'">
+                    <div class="col-md-4">
+                        <label class="control-label"> Collage Card:</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <img class="img" th:src="@{'/upload/' + *{collageCardImg}}" alt="collageCard image" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row" th:if="*{serviceType} == 'StudentTranscriptIssuance'">
+                    <div class="col-md-4">
+                        <label class="control-label"> Graduation Certificate:</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <img class="img" th:src="@{'/upload/' + *{graduationCertificateImg}}" alt="graduationCertificateImg image" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="specialization" th:if="*{serviceType} == 'StudentTranscriptIssuance' or *{serviceType} == 'RequestToObjectToMaterial' or *{serviceType} == 'GraduationCertificate'">
+                    <div class="col-md-4">
+                        <label class="control-label">Payment Prove:</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <img class="img" th:src="@{'/upload/' + *{paymentProveImg}}" alt="paymentProveImg image" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row" th:if="*{serviceType} == 'GraduationCertificate' or *{serviceType == 'IssuanceOfRegistrationDocumentForDeferment'} or *{serviceType} == 'StudentTranscriptIssuance'">
+                    <div class="col-md-4">
+                        <label class="control-label">Blood Donation Prove :</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <img class="img" th:src="@{'/upload/' + *{bloodDonationProveImg}}" alt="bloodDonationProveImg image" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row" th:if="*{serviceType} == 'GraduationCertificate'">
+                    <div class="col-md-4">
+                        <label class="control-label">Student Clearance:</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <img class="img" th:src="@{'/upload/' + *{studentClearanceImg}}" alt="studentClearanceImg image" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row" th:if="*{serviceType} == 'GraduationCertificate'">
+                    <div class="col-md-4">
+                        <label class="control-label">University Housing Clearance :</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <img class="img" th:src="@{'/upload/' + *{universityHousingClearanceImg}}" alt="universityHousingClearanceImg image" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" th:if="*{serviceType} == 'RequestToCancelRegistration'">
+                    <div class="col-md-4">
+                        <label class="control-label">Registration Receipt:</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <img class="img" th:src="@{'/upload/' + *{universityHousingClearanceImg}}" alt="universityHousingClearanceImg image" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row" th:if="*{serviceType} == 'IssuanceOfRegistrationDocumentForDeferment'">
+                    <div class="col-md-4">
+                        <label class="control-label">Personal Photos:</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <img class="img" th:src="@{'/upload/' + *{universityHousingClearanceImg}}" alt="universityHousingClearanceImg image" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row" th:if="*{serviceType} == 'StudentStatusStatement' and *{statusReportImg} != null">
+                    <div class="col-md-4">
+                        <label class="control-label"> Status Report:</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <img class="img" th:src="@{'/upload/' + *{statusReportImg}}" alt="statusReport image" />
+                        </div>
+                    </div>
+                    <a th:if="*{serviceStatus} == 'APPROVED BY DEAN'" style="margin-bottom: 20px;" sec:authorize="hasAuthority('STUDENT')" class="btn btn-default" th:href="@{'/services/download/' + *{statusReportImg}}" th:text="@{'Download ' + *{serviceType}}"><span class="glyphicon glyphicon-edit"></span></a>
+                </div>
+                <div class="row" th:if="*{serviceType} == 'StudentTranscriptIssuance' and *{cancelRegistration} != null">
+                    <div class="col-md-4">
+                        <label class="control-label">Student Transcript Issuance:</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <img class="img" th:src="@{'/upload/' + *{cancelRegistration}}" alt="student Transcript image" />
+                        </div>
+                    </div>
+                    <a th:if="*{serviceStatus} == 'APPROVED BY DEAN'" style="margin-bottom: 20px;" sec:authorize="hasAuthority('STUDENT')" class="btn btn-default" th:href="@{'/services/download/' + *{cancelRegistration}}" th:text="@{'Download ' + *{serviceType}}"><span class="glyphicon glyphicon-edit"></span></a>
+                </div>
+                <div class="row" th:if="*{serviceType} == 'IssuanceOfRegistrationDocumentForDeferment' and *{marksReport} != null">
+                    <div class="col-md-4">
+                        <label class="control-label">Deferment Document:</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <img class="img" th:src="@{'/upload/' + *{marksReport}}" alt="document For Deferment image" />
+                        </div>
+                    </div>
+                    <a th:if="*{serviceStatus} == 'APPROVED BY DEAN'" style="margin-bottom: 20px;" sec:authorize="hasAuthority('STUDENT')" class="btn btn-default" th:href="@{'/services/download/' + *{marksReport}}" th:text="@{'Download ' + *{serviceType}}"><span class="glyphicon glyphicon-edit"></span></a>
+                </div>
+                <div class="row" th:if="*{serviceType} == 'GraduationCertificate' and *{graduationCertificateImg} != null">
+                    <div class="col-md-4">
+                        <label class="control-label">Graduation Certificate:</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <img class="img" th:src="@{'/upload/' + *{graduationCertificateImg}}" alt="graduation Certificate image" />
+                        </div>
+                    </div>
+                    <a style="margin-bottom: 20px;" sec:authorize="hasAuthority('STUDENT')" class="btn btn-default" th:href="@{'/services/download/' + *{graduationCertificateImg}}" th:text="@{'Download ' + *{serviceType}}"><span class="glyphicon glyphicon-edit"></span></a>
+                </div>
+                <a th:if="*{serviceStatus} == 'APPROVED BY DEAN'" class="btn btn-info" th:href="@{'/services/list/' + *{serviceType}}"><span class="glyphicon glyphicon-chevron-left"></span> Back</a>
+                <a sec:authorize="hasAuthority('STUDENT')" class="btn btn-default" th:href="@{'/services/edit/' + *{id}}"><span class="glyphicon glyphicon-edit"></span> Edit </a>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+<div th:replace="Shared/footer :: footer"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>

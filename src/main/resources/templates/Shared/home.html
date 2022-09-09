@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Home Page</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+<div th:replace="Shared/header :: header"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <strong><h2>UMS</h2></strong>
+            <p>These days, automation and computerization have made things easier for universities to</p>
+            <p>manage student enrollment, admissions, fees collection, conducting examinations, etc. Cloud</p>
+            <p>based university management system software manages all activities of the university efficiently and precisely.</p>
+        </div>
+        <div class="col-md-4" style="padding-top: 50px;">
+            <img src="/images/UMS.png">
+        </div>
+    </div>
+</div>
+
+<section>
+    <div class="ee-panel-green ee-panel-full-width">
+        <div class="display-width-container my-3 my-md-5">
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    <div class="threesteps-img-frame">
+                        <img class="img-fluid" src="/images/informed.png" alt="A twig and leaves drawn within an illuminating lightbulb">
+                    </div>
+                    <h2 class="step-header">Improve Sustainability</h2>
+                    <p class="text-center mb-5">ADMS provides an integrated and comprehensive software for compiling and managing both academic and administrative activities of the HEIs... </p>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="threesteps-img-frame">
+                        <img class="img-fluid" src="/images/icon_time.png" alt="Illustration of a stop watch">
+                    </div>
+                    <h2 class="step-header">Accreditation Data Management System</h2>
+                    <p class="text-center mb-5">Focus on getting <span class="bold-text">RESULTS</span>, By keeping thorough records of classroom activities, the software manages academics in a systematic way and improves teacher-student collaboration.</p>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="threesteps-img-frame">
+                        <img class="img-fluid" src="/images/icon_wallet.png" alt="Illustration of a wallet, bulging with cash">
+                    </div>
+                    <h2 class="step-header">Outcome Based Education Software</h2>
+                    <p class="text-center mb-5">OBE enables HEIs to assess, analyze, and effectively map the CO-POs. OBE Software helps universities to meet the guidelines of the NBA by improving the quality..</p>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-12 text-center">
+                    <a href="#" class="btn btn-secondary">See More Benefits</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="footer-dark">
+    <footer layout:fragment="footer" xmlns:layout="http://www.w3.org/1999/xhtml">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-3 item">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Seamless management of all in-house activities</a></li>
+                        <li><a href="#">Offline & online examination management</a></li>
+                        <li><a href="#">Role-based login access for data security</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-6 col-md-3 item">
+                    <h3>About</h3>
+                    <ul>
+                        <li><a href="#">Reduction of manpower and cost savings</a></li>
+                        <li><a href="#">Monitoring & accurate information analysis</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-6 item text">
+                    <h3>Public Sector Agencies</h3>
+                    <p>The experience has been very good, it's easy to use and the customer support has probably been one of the best I have dealt with.</p>
+                </div>
+                <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a></div>
+            </div>
+            <p class="copyright">All Rights Reserved. &copy; 2022 @UMS</p>
+        </div>
+    </footer>
+</div>
+
+
+</body>
+</html>

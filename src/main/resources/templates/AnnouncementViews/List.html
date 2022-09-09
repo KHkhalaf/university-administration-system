@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <title>Announcements List</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+<div th:replace="Shared/header :: header"></div>
+<div layout:fragment="content" class="row">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-5">
+           <h2 th:text="${header}"></h2>
+        </div>
+        <a sec:authorize="hasAuthority('EMPLOYEE')" th:href="@{'/announcement/create/' + ${announcementType}}" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Add announcement</a>
+    </div>
+    <div class="col-xs-12 col-md-12">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="table-responsive">
+                <table class="table table-hover" id="product-table">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="announcement : ${announcements}">
+                        <td th:text="${announcement.id}"></td>
+                        <td th:text="${announcement.title}"></td>
+                        <td th:text="${announcement.description}"></td>
+                        <td><a th:href="@{'/announcement/details/' + ${announcement.id}}" class="btn btn-default">Details</a></td>
+                        <td><a sec:authorize="hasAuthority('EMPLOYEE')" th:href="@{'/announcement/edit/' + ${announcement.id}}" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</a></td>
+                        <td><a sec:authorize="hasAuthority('EMPLOYEE')" th:href="@{'/announcement/delete/' + ${announcement.id}}" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Delete</a></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

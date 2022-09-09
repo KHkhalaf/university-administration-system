@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <title>Create Announcement</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+<div th:replace="Shared/header :: header"></div>
+
+<div layout:fragment="content" align="center">
+    <h1 th:text="${header}"></h1>
+    <br />
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <form action="#" th:object="${announcementDto}">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="control-label">Title :</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label class="form-control" th:text="*{title}"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="control-label">Description :</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label class="form-control" th:text="*{description}"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" hidden>
+                    <div class="col-md-4">
+                        <label class="control-label">Type :</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label class="form-control" th:text="*{type}"></label>
+                        </div>
+                    </div>
+                </div>
+                <div th:if="*{type} == 'marks'">
+                    <div class="row" id="studyYear">
+                        <div class="col-md-4">
+                            <label class="control-label">Study Year :</label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="form-control" th:text="*{studyYear}"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="studyLevel">
+                        <div class="col-md-4">
+                            <label class="control-label">Study Level :</label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="form-control" th:text="*{studyLevel}"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="period">
+                        <div class="col-md-4">
+                            <label class="control-label">Period :</label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="form-control" th:text="*{period}"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="materialName">
+                        <div class="col-md-4">
+                            <label class="control-label">Material Name :</label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="form-control" th:text="*{materialName}"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" th:if="*{marksImg} != null">
+                    <div class="col-md-4">
+                        <label class="control-label"> Uploaded File :</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <img class="img" th:src="@{'/upload/' + *{marksImg}}" alt="marksImg image" />
+                        </div>
+                    </div>
+                </div>
+                <a sec:authorize="hasAuthority('EMPLOYEE')" class="btn btn-default" th:href="@{'/announcement/edit/' + *{id}}"><span class="glyphicon glyphicon-edit"></span> Edit </a>
+                <a class="btn btn-info" th:href="@{'/announcement/list/' + *{type}}"><span class="glyphicon glyphicon-chevron-left"></span> Back</a>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+<div th:replace="Shared/footer :: footer"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>

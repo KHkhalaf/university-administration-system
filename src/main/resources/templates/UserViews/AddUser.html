@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.w3.org/1999/xhtml" 
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="utf-8" />
+    <title>Add User</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+</head>
+<body>
+<div th:replace="Shared/header :: header"></div>
+<div layout:fragment="content" align="center">
+    <h1>Add User</h1>
+    <br />
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <form action="#" th:action="@{/auth/registerUser}" th:object="${userDto}"
+                  method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="control-label">User Name:</label>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="form-group">
+                            <input type="text" class="form-control" th:field="*{username}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="control-label"> Password:</label>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="form-group">
+                            <input type="password" class="form-control" th:field="*{password}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="control-label"> Email:</label>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="form-group">
+                            <input type="email" class="form-control" th:field="*{email}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="control-label"> Address:</label>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="form-group">
+                            <input class="form-control" th:field="*{address}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="control-label">Phone Number:</label>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="form-group">
+                            <input type="number" class="form-control" th:field="*{phoneNumber}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="control-label">Type :</label>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="form-group">
+                            <select id="type" th:field="*{type}" class="form-control">
+                                <option value="STUDENT" selected="selected">Student</option>
+                                <option value="EMPLOYEE">Employee</option>
+                                <option value="DEAN">Dean</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="specialization">
+                    <div class="col-md-3">
+                        <label class="control-label">Specialization:</label>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="form-group">
+                            <input class="form-control" th:field="*{specialization}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="nationality">
+                    <div class="col-md-3">
+                        <label class="control-label">Nationality:</label>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="form-group">
+                            <input class="form-control" th:field="*{nationality}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="birthDay">
+                    <div class="col-md-3">
+                        <label class="control-label">BirthDay:</label>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="form-group">
+                            <input type="date" class="form-control" th:field="*{birthDay}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="placeOfBirth">
+                    <div class="col-md-3">
+                        <label class="control-label">Place Of Birth:</label>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="form-group">
+                            <input class="form-control" th:field="*{placeOfBirth}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="gender">
+                    <div class="col-md-3">
+                        <label class="control-label">Gender:</label>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="form-group">
+                            <select th:field="*{gender}" class="form-control">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="highSchoolCertificate">
+                    <div class="col-md-3">
+                        <label class="control-label">high School Certificate:</label>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="form-group">
+                            <input type="file" class="form-control" th:field="*{highSchoolCertificate}">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <a class="btn btn-default" href="/user/list/">Cancel </a>
+                    <button type="submit" class="btn btn-primary"> Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+<div th:replace="Shared/footer :: footer"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#type').on('change', function() {
+            if ( this.value == 'STUDENT') {
+                $("#specialization").show();
+                $("#nationality").show();
+                $("#birthDay").show();
+                $("#placeOfBirth").show();
+                $("#gender").show();
+                $("#highSchoolCertificate").show();
+            }
+            else{
+                $("#specialization").hide();
+                $("#nationality").hide();
+                $("#birthDay").hide();
+                $("#placeOfBirth").hide();
+                $("#gender").hide();
+                $("#highSchoolCertificate").hide();
+            }
+        });
+    });
+</script>
+</body>
+</html>

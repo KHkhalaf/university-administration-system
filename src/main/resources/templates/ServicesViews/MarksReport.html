@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en"
+	  xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>How to insert image in database using Spring MVC</h2>
+
+<form th:action="@{/services/save}" th:object="${serviceDto}" method="post" enctype="multipart/form-data">
+
+	Photo: <input type="file"  th:field="*{photo}">
+
+	<input type="submit" value="Submit">
+
+
+</form>
+</body>
+</html>

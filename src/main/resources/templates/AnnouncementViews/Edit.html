@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
+<head>
+    <title>Update Announcement</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+<div th:replace="Shared/header :: header"></div>
+
+<div layout:fragment="content" align="center">
+    <h1 th:text="${header}"></h1>
+    <br />
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <form action="#" th:action="@{/announcement/update}" th:object="${announcementDto}"
+                  method="post" enctype="multipart/form-data">
+                <input type="hidden" th:field="*{id}" />
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="control-label">Title :</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <input type="text" class="form-control" th:field="*{title}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="control-label">Description :</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <input type="text" class="form-control" th:field="*{description}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" hidden>
+                    <div class="col-md-4">
+                        <label class="control-label">Type :</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <select id="type" th:field="*{type}" class="form-control">
+                                <option value="generalAnnouncement">General Announcement</option>
+                                <option value="marks">Marks</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div th:if="*{type} == 'marks'">
+                    <div class="row" id="studyYear">
+                        <div class="col-md-4">
+                            <label class="control-label">Study Year :</label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <select th:field="*{studyYear}" class="form-control">
+                                    <option value="2015 / 2014">2015 / 2014</option>
+                                    <option value="2016 / 2015">2016 / 2015</option>
+                                    <option value="2017 / 2016">2017 / 2016</option>
+                                    <option value="2018 / 2017">2018 / 2017</option>
+                                    <option value="2019 / 2018">2019 / 2018</option>
+                                    <option value="2020 / 2019">2020 / 2019</option>
+                                    <option value="2021 / 2020">2021 / 2020</option>
+                                    <option value="2022 / 2021">2022 / 2021</option>
+                                    <option value="2023 / 2022">2023 / 2022</option>
+                                    <option value="2024 / 2023">2024 / 2023</option>
+                                    <option value="2025 / 2024">2025 / 2024</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="studyLevel">
+                        <div class="col-md-4">
+                            <label class="control-label">Study Level :</label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <select th:field="*{studyLevel}" class="form-control">
+                                    <option value="first year">first year</option>
+                                    <option value="second year">second year</option>
+                                    <option value="third year">third year</option>
+                                    <option value="fourth year">fourth year</option>
+                                    <option value="fifth year">fifth year</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="period">
+                        <div class="col-md-4">
+                            <label class="control-label">Period :</label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <select th:field="*{period}" class="form-control">
+                                    <option value="first period">first period</option>
+                                    <option value="second period">second period</option>
+                                    <option value="third period">third year</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="materialName">
+                        <div class="col-md-4">
+                            <label class="control-label">Material Name :</label>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <input type="text" class="form-control" th:field="*{materialName}"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="control-label"> Upload File :</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <input type="file" class="form-control" th:field="*{marks}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row" th:if="*{marksImg} != null">
+                    <div class="col-md-4">
+                        <label class="control-label"> Uploaded File :</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <img class="img" th:src="@{'/upload/' + *{marksImg}}" alt="Uploaded File image" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <a class="btn btn-default" th:href="@{'/announcement/list/' + *{type}}"><span class="glyphicon glyphicon-remove-circle"></span> Cancel</a>
+                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<div th:replace="Shared/footer :: footer"></div>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE HTML>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
+<head>
+    <title>Create Service</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+<div th:replace="Shared/header :: header"></div>
+
+<div layout:fragment="content" align="center">
+    <h1 th:if="${serviceType} == 'StudentTranscriptIssuance'"> Create Student transcript issuance Service</h1>
+    <h1 th:if="${serviceType} == 'StudentStatusStatement'"> Create Student status statement Service</h1>
+    <h1 th:if="${serviceType} == 'RequestToObjectToMaterial'"> Create Request to object to material Service</h1>
+    <h1 th:if="${serviceType} == 'IssuanceOfRegistrationDocumentForDeferment'"> Create Issuance of registration document for deferment Service</h1>
+    <h1 th:if="${serviceType} == 'RequestToCancelRegistration'"> Create Request to cancel registration Service</h1>
+    <h1 th:if="${serviceType} == 'GraduationCertificate'"> Create Graduation Certificate Service</h1>
+
+    <br />
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <form action="#" th:action="@{/services/save}" th:object="${createServiceDto}"
+                  method="post" enctype="multipart/form-data">
+                <input hidden th:field="*{serviceType}"/>
+                <div class="row" th:if="${serviceType} == 'RequestToObjectToMaterial'">
+                    <div class="col-md-4">
+                        <label class="control-label">Material Name :</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <input type="text" class="form-control" th:field="*{materialName}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" th:if="${serviceType} != 'RequestToObjectToMaterial'">
+                    <div class="col-md-4">
+                        <label class="control-label"> Identification:</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <input type="file" class="form-control" th:field="*{identification}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row" th:if="${serviceType} == 'RequestToCancelRegistration' or ${serviceType} == 'StudentStatusStatement'">
+                    <div class="col-md-4">
+                        <label class="control-label"> Collage Card:</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <input type="file" class="form-control" th:field="*{collageCard}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row" th:if="${serviceType} == 'StudentTranscriptIssuance'">
+                    <div class="col-md-4">
+                        <label class="control-label"> Graduation Certificate:</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <input type="file" class="form-control" th:field="*{graduationCertificate}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="specialization" th:if="${serviceType} == 'StudentTranscriptIssuance' or ${serviceType} == 'RequestToObjectToMaterial' or ${serviceType} == 'GraduationCertificate'">
+                    <div class="col-md-4">
+                        <label class="control-label">Payment Prove:</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <input type="file" class="form-control" th:field="*{paymentProve}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row" th:if="${serviceType} == 'GraduationCertificate' or ${serviceType == 'IssuanceOfRegistrationDocumentForDeferment'} or ${serviceType} == 'StudentTranscriptIssuance'">
+                    <div class="col-md-4">
+                        <label class="control-label">Blood Donation Prove :</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <input type="file" class="form-control" th:field="*{bloodDonationProve}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row" th:if="${serviceType} == 'GraduationCertificate'">
+                    <div class="col-md-4">
+                        <label class="control-label">Student Clearance:</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <input type="file" class="form-control" th:field="*{studentClearance}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row" th:if="${serviceType} == 'GraduationCertificate'">
+                    <div class="col-md-4">
+                        <label class="control-label">University Housing Clearance:</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <input type="file" class="form-control" th:field="*{universityHousingClearance}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row" th:if="${serviceType} == 'RequestToCancelRegistration'">
+                    <div class="col-md-4">
+                        <label class="control-label">Registration Receipt:</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <input type="file" class="form-control" th:field="*{universityHousingClearance}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row" th:if="${serviceType} == 'IssuanceOfRegistrationDocumentForDeferment'">
+                    <div class="col-md-4">
+                        <label class="control-label">Personal Photos:</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <input type="file" class="form-control" th:field="*{universityHousingClearance}">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary"> Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+<div th:replace="Shared/footer :: footer"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>
